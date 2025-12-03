@@ -95,7 +95,7 @@ Polish UI using Tailwind; ensure components are responsive and accessible. Imple
 - Modern, responsive UI implemented across all pages
 - Tailwind CSS used throughout
 - Dark mode support via Tailwind dark: classes
-- Consider VaultsIQ brand colors
+- Use red color scheme with black, grey, and white accents (VaultsIQ brand colors)
 
 ---
 
@@ -140,7 +140,7 @@ Create a professional logo and brand identity for VaultsIQ. The logo should repr
 
 **Description:**
 
-Complete UI rebrand with a modern, professional design. Create a new landing page with: header, hero section, features section, main content area, and footer. Implement a cohesive color scheme using blue/teal shades (representing trust, finance) with accent colors.
+Complete UI rebrand with a modern, professional design. Create a new landing page with: header, hero section, features section, main content area, and footer. Implement a cohesive color scheme using shades of red with a mix of black, grey, and white for a sophisticated, modern look.
 
 **Acceptance Criteria:**
 
@@ -152,8 +152,9 @@ Complete UI rebrand with a modern, professional design. Create a new landing pag
   - [ ] Main content area (explaining ERC-4626, yield generation)
   - [ ] Footer (links, social, copyright)
 - [ ] Implement color scheme:
-  - [ ] Primary: Blue/Teal shades (trust, finance)
-  - [ ] Accent: Gold/Yellow (yield, growth)
+  - [ ] Primary: Shades of red for primary actions and branding
+  - [ ] Neutral: Black, grey, and white for backgrounds, text, and UI elements
+  - [ ] Accent: Red variations for highlights and interactive elements
 - [ ] Update Tailwind config with new color palette
 - [ ] Ensure design is cohesive across all pages
 - [ ] Maintain responsive design (mobile, tablet, desktop)

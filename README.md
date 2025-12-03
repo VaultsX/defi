@@ -6,6 +6,12 @@ A modern Next.js frontend for VaultsIQ - a decentralized vault platform enabling
 
 VaultsIQ is a comprehensive DeFi platform that allows users to:
 
+- **Create Multiple Vaults**: Each user can create multiple personal ERC-4626 compliant vaults
+- **Automated Yield Generation**: Deploy assets to DeFi protocols (Aave, Compound, Uniswap) automatically
+- **ERC-4626 Standard**: Industry-standard tokenized vault interface for maximum interoperability
+- **Share-Based Ownership**: Transferable ERC-20 vault shares representing ownership
+- **Protocol Allocations**: Configure how assets are distributed across different DeFi protocols
+
 ### Multi-Vault Management
 
 - **Create multiple personal vaults** for different strategies or assets
@@ -36,6 +42,17 @@ Built for Ethereum-compatible chains, with primary deployment on Base Sepolia te
 - **Styling:** Tailwind CSS
 - **Web3:** wagmi, viem, Reown AppKit (WalletConnect)
 - **State Management:** React Hooks
+
+## Design System
+
+### Color Scheme
+
+The VaultsIQ frontend uses a sophisticated color palette featuring:
+- **Primary Colors:** Shades of red for primary actions and branding
+- **Neutral Colors:** Black, grey, and white for backgrounds, text, and UI elements
+- **Accent Colors:** Red variations for highlights and interactive elements
+
+This color scheme creates a modern, professional, and visually appealing interface that reflects the platform's DeFi focus.
 
 ## Quick Start
 
