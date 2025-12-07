@@ -1,7 +1,8 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
 import type { HardhatEthersSigner } from "@nomicfoundation/hardhat-ethers/signers";
-import type { MockERC20, MockERC4626Vault } from "../typechain-types";
+import type { MockERC20 } from "../typechain-types/contracts/mocks/MockERC20";
+import type { MockERC4626Vault } from "../typechain-types/contracts/mocks/MockERC4626Vault";
 
 describe("IERC4626 Interface", function () {
   let mockAsset: MockERC20;
