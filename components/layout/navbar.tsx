@@ -46,55 +46,74 @@ export function Navbar() {
   }
 
   return (
-    <nav className="w-full border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
+    <nav
+      className="w-full border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black"
+      role="navigation"
+      aria-label="Main navigation"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo/Brand */}
           <div className="flex-shrink-0">
             <h1 className="text-xl font-bold text-red-600 dark:text-red-500">
-              VaultsIQ
+              <a href="/" className="focus:outline-none focus:ring-2 focus:ring-red-600 dark:focus:ring-red-500 focus:ring-offset-2 rounded">
+                VaultsIQ
+              </a>
             </h1>
           </div>
 
           {/* Wallet Connection Section */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4 flex-wrap sm:flex-nowrap">
             {isConnected ? (
               <>
                 {/* Network Display */}
                 <div className="flex items-center gap-2">
                   {isCorrectNetwork ? (
-                    <span className="px-3 py-1.5 text-sm font-medium text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20 rounded-md border border-green-200 dark:border-green-800">
-                      {getNetworkName()}
+                    <span
+                      className="px-2 sm:px-3 py-1.5 text-xs sm:text-sm font-medium text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20 rounded-md border border-green-200 dark:border-green-800"
+                      aria-label={`Connected to ${getNetworkName()} network`}
+                    >
+                      <span className="hidden sm:inline">{getNetworkName()}</span>
+                      <span className="sm:hidden">Base</span>
                     </span>
                   ) : (
                     <button
                       onClick={handleSwitchNetwork}
-                      className="px-3 py-1.5 text-sm font-medium text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-900/20 rounded-md border border-red-200 dark:border-red-800 hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors"
+                      aria-label="Switch to Base Sepolia network"
+                      className="px-2 sm:px-3 py-1.5 text-xs sm:text-sm font-medium text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-900/20 rounded-md border border-red-200 dark:border-red-800 hover:bg-red-100 dark:hover:bg-red-900/30 focus:outline-none focus:ring-2 focus:ring-red-600 dark:focus:ring-red-500 focus:ring-offset-2 transition-colors"
                     >
-                      Switch to Base Sepolia
+                      <span className="hidden sm:inline">Switch to Base Sepolia</span>
+                      <span className="sm:hidden">Switch</span>
                     </button>
                   )}
                 </div>
 
                 {/* Address Display */}
-                <div className="px-3 py-1.5 text-sm font-mono text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-900 rounded-md border border-gray-200 dark:border-gray-800">
+                <div
+                  className="px-2 sm:px-3 py-1.5 text-xs sm:text-sm font-mono text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-900 rounded-md border border-gray-200 dark:border-gray-800"
+                  aria-label={`Wallet address: ${address}`}
+                >
                   {formatAddress(address)}
                 </div>
 
                 {/* Disconnect Button */}
                 <button
                   onClick={handleDisconnect}
-                  className="px-4 py-1.5 text-sm font-medium text-white bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 rounded-md transition-colors"
+                  aria-label="Disconnect wallet"
+                  className="px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-medium text-white bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600 dark:focus:ring-red-500 focus:ring-offset-2 transition-colors"
                 >
-                  Disconnect
+                  <span className="hidden sm:inline">Disconnect</span>
+                  <span className="sm:hidden">Disc</span>
                 </button>
               </>
             ) : (
               <button
                 onClick={handleConnect}
-                className="px-4 py-1.5 text-sm font-medium text-white bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 rounded-md transition-colors"
+                aria-label="Connect wallet"
+                className="px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-medium text-white bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600 dark:focus:ring-red-500 focus:ring-offset-2 transition-colors"
               >
-                Connect Wallet
+                <span className="hidden sm:inline">Connect Wallet</span>
+                <span className="sm:hidden">Connect</span>
               </button>
             )}
           </div>
