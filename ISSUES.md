@@ -4,47 +4,7 @@ This file contains all GitHub issues for the VaultsIQ frontend. Each issue is re
 
 ## ✅ Completed Issues
 
-### Issue #5: UI Rebrand & Landing Page Redesign
 
-**Status:** ✅ COMPLETED  
-**Completed Date:** 2024
-
-**Labels:** `frontend`, `design`, `ui/ux`  
-
-**Priority:** HIGH
-
-**Description:**
-
-Complete UI rebrand with a modern, professional design. Create a new landing page with: header, hero section, features section, main content area, and footer. Implement a cohesive color scheme using shades of red with a mix of black, grey, and white for a sophisticated, modern look.
-
-**Acceptance Criteria:**
-
-- [x] Remove existing landing page content
-- [x] Design and implement new layout structure:
-  - [x] Header/Navbar (with logo, navigation, wallet connect)
-  - [x] Hero section (compelling introduction to VaultsIQ)
-  - [x] Features section (highlighting multi-vault capabilities)
-  - [x] Main content area (explaining ERC-4626, yield generation)
-  - [x] Footer (links, social, copyright)
-- [x] Implement color scheme:
-  - [x] Primary: Shades of red for primary actions and branding
-  - [x] Neutral: Black, grey, and white for backgrounds, text, and UI elements
-  - [x] Accent: Red variations for highlights and interactive elements
-- [x] Update Tailwind config with new color palette
-- [x] Ensure design is cohesive across all pages
-- [x] Maintain responsive design (mobile, tablet, desktop)
-- [x] Ensure accessibility (contrast ratios, focus states)
-
-**Technical Notes:**
-
-- Color palette configured in globals.css with CSS variables ✅
-- Hero section highlights "multiple vaults" capability ✅
-- Feature section emphasizes ERC-4626 compliance and automation ✅
-- Footer component created with links and resources ✅
-- Navigation links added to Navbar ✅
-- Enhanced landing page with comprehensive content ✅
-
----
 
 ### Issue #1: Wallet Integration — Reown AppKit + Wagmi
 
@@ -148,38 +108,49 @@ Polish UI using Tailwind; ensure components are responsive and accessible. Imple
 
 ---
 
-## ❌ Pending Issues
+### Issue #5: UI Rebrand & Landing Page Redesign
 
-### Issue #4: Logo Design & Brand Identity
+**Status:** ✅ COMPLETED  
+**Completed Date:** 2024
 
-**Status:** ❌ PENDING  
+**Labels:** `frontend`, `design`, `ui/ux`  
 
-**Labels:** `frontend`, `design`, `branding`  
-
-**Priority:** MEDIUM
+**Priority:** HIGH
 
 **Description:**
 
-Create a professional logo and brand identity for VaultsIQ. The logo should represent intelligence, automation, and multiple vaults. Should work well in both light and dark modes.
+Complete UI rebrand with a modern, professional design. Create a new landing page with: header, hero section, features section, main content area, and footer. Implement a cohesive color scheme using shades of red with a mix of black, grey, and white for a sophisticated, modern look.
 
 **Acceptance Criteria:**
 
-- [ ] Logo designed in multiple formats (SVG, PNG, favicon)
-- [ ] Logo works on light and dark backgrounds
-- [ ] Logo is scalable (works at small and large sizes)
-- [ ] Logo files added to `public/` directory
-- [ ] Favicon updated
-- [ ] Logo integrated into header/navbar
-- [ ] Brand guidelines document (optional but preferred)
+- [x] Remove existing landing page content
+- [x] Design and implement new layout structure:
+  - [x] Header/Navbar (with logo, navigation, wallet connect)
+  - [x] Hero section (compelling introduction to VaultsIQ)
+  - [x] Features section (highlighting multi-vault capabilities)
+  - [x] Main content area (explaining ERC-4626, yield generation)
+  - [x] Footer (links, social, copyright)
+- [x] Implement color scheme:
+  - [x] Primary: Shades of red for primary actions and branding
+  - [x] Neutral: Black, grey, and white for backgrounds, text, and UI elements
+  - [x] Accent: Red variations for highlights and interactive elements
+- [x] Update Tailwind config with new color palette
+- [x] Ensure design is cohesive across all pages
+- [x] Maintain responsive design (mobile, tablet, desktop)
+- [x] Ensure accessibility (contrast ratios, focus states)
 
 **Technical Notes:**
 
-- SVG format preferred for scalability
-- Consider creating variations: full logo, icon-only, horizontal/vertical layouts
-- Ensure logo is optimized for web (small file size)
-- Should convey "IQ" (intelligence) and "multiple vaults" concept
+- Color palette configured in globals.css with CSS variables ✅
+- Hero section highlights "multiple vaults" capability ✅
+- Feature section emphasizes ERC-4626 compliance and automation ✅
+- Footer component created with links and resources ✅
+- Navigation links added to Navbar ✅
+- Enhanced landing page with comprehensive content ✅
 
 ---
+
+## ❌ Pending Issues
 
 ### Issue #6: Multi-Vault Dashboard Interface
 
