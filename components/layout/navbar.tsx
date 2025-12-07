@@ -2,9 +2,9 @@
 
 import { useAccount, useDisconnect, useChainId, useSwitchChain } from 'wagmi'
 import { useAppKit } from '@reown/appkit/react'
-import { baseSepolia } from 'wagmi/chains'
+import { NETWORK } from '@/config/constants'
 
-const BASE_SEPOLIA_CHAIN_ID = 84532
+const BASE_SEPOLIA_CHAIN_ID = NETWORK.chainId
 
 export function Navbar() {
   const { address, isConnected } = useAccount()
