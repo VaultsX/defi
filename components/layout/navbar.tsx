@@ -56,11 +56,37 @@ export function Navbar() {
           {/* Logo/Brand */}
           <div className="flex-shrink-0">
             <h1 className="text-xl font-bold text-red-600 dark:text-red-500">
-              <a href="/" className="focus:outline-none focus:ring-2 focus:ring-red-600 dark:focus:ring-red-500 focus:ring-offset-2 rounded">
+              <a
+                href="/"
+                className="focus:outline-none focus:ring-2 focus:ring-red-600 dark:focus:ring-red-500 focus:ring-offset-2 rounded"
+                aria-label="VaultsIQ home"
+              >
                 VaultsIQ
               </a>
             </h1>
           </div>
+
+          {/* Navigation Links */}
+          <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
+            <a
+              href="/dashboard"
+              className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-500 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-red-600 dark:focus:ring-red-500 focus:ring-offset-2 rounded transition-colors"
+            >
+              Dashboard
+            </a>
+            <a
+              href="/create"
+              className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-500 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-red-600 dark:focus:ring-red-500 focus:ring-offset-2 rounded transition-colors"
+            >
+              Create Vault
+            </a>
+            <a
+              href="/docs"
+              className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-500 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-red-600 dark:focus:ring-red-500 focus:ring-offset-2 rounded transition-colors"
+            >
+              Docs
+            </a>
+          </nav>
 
           {/* Wallet Connection Section */}
           <div className="flex items-center gap-2 sm:gap-4 flex-wrap sm:flex-nowrap">
