@@ -266,8 +266,41 @@ contract VaultFactory is Ownable, ReentrancyGuard {
         if (!registeredUsers[user]) {
             revert UserNotRegistered(user);
         }
-        userUsernames[user] = newUsername;
-        userBios[user] = newBio;
+        
+        // Validate new username if provided
+        bytes memory newUsernameBytes = bytes(newUsername);
+        if (newUsernameBytes.length > 0) {
+            if (newUsernameBytes.length > MAX_USERNAME_LENGTH) {
+                revert InvalidUsername("New username exceeds maximum length");
+            }
+            // Check if new username is available (unless it's the same user)
+            address existingUser = usernameToAddress[newUsername];
+            if (existingUser != address(0) && existingUser != user) {
+                revert InvalidUsername("New username already taken");
+            }
+        }
+        
+        // Validate new bio if provided
+        bytes memory newBioBytes = bytes(newBio);
+        if (newBioBytes.length > 0 && newBioBytes.length > MAX_BIO_LENGTH) {
+            revert InvalidBio("New bio exceeds maximum length");
+        }
+        
+        // Update username mapping if changed
+        string memory oldUsername = userUsernames[user];
+        if (keccak256(bytes(oldUsername)) != keccak256(bytes(newUsername))) {
+            delete usernameToAddress[oldUsername];
+            if (newUsernameBytes.length > 0) {
+                usernameToAddress[newUsername] = user;
+            }
+        }
+        
+        if (newUsernameBytes.length > 0) {
+            userUsernames[user] = newUsername;
+        }
+        if (newBioBytes.length > 0) {
+            userBios[user] = newBio;
+        }
     }
 
     /**
