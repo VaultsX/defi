@@ -4,38 +4,7 @@ This file contains all GitHub issues for the VaultsIQ frontend. Each issue is re
 
 ## ✅ Completed Issues
 
-### Issue #2: Wagmi Configuration & Provider Setup
 
-**Status:** ✅ COMPLETED  
-**Completed Date:** 2024
-
-**Labels:** `frontend`, `infrastructure`, `web3`  
-
-**Priority:** HIGH
-
-**Description:**
-
-Create `config/wagmi.ts` and `config/adapter.ts` to expose providers and signers to the app. Configure for Base Sepolia testnet with proper RPC endpoints.
-
-**Acceptance Criteria:**
-
-- [x] Wagmi config configured for Base Sepolia
-- [x] Hooks/components can get an ethers provider from the adapter
-- [x] Hooks/components can get an ethers signer from the adapter
-- [x] `walletClientToSigner` utility function works
-- [x] `publicClientToProvider` utility function works
-- [x] RPC endpoints properly configured
-
-**Implementation Notes:**
-
-- Base Sepolia RPC: `https://sepolia.base.org` ✅
-- Chain ID: 84532 ✅
-- Utilities handle viem to ethers conversions correctly ✅
-- Created `hooks/useEthersProvider.ts` for getting ethers provider ✅
-- Created `hooks/useEthersSigner.ts` for getting ethers signer ✅
-- RPC endpoint explicitly configured in wagmi config ✅
-
----
 
 ### Issue #1: Wallet Integration — Reown AppKit + Wagmi
 
@@ -71,39 +40,42 @@ Add wallet connection using Reown AppKit (WalletConnect) + Wagmi. Provide a `Nav
 
 ---
 
----
+### Issue #2: Wagmi Configuration & Provider Setup
 
-## ❌ Pending Issues
+**Status:** ✅ COMPLETED  
+**Completed Date:** 2024
 
-### Issue #3: Styling, Accessibility & Responsiveness
+**Labels:** `frontend`, `infrastructure`, `web3`  
 
-**Status:** ❌ PENDING  
-
-**Labels:** `frontend`, `ui/ux`, `design`  
-
-**Priority:** MEDIUM
+**Priority:** HIGH
 
 **Description:**
 
-Polish UI using Tailwind; ensure components are responsive and accessible. Implement a cohesive design system for VaultsIQ.
+Create `config/wagmi.ts` and `config/adapter.ts` to expose providers and signers to the app. Configure for Base Sepolia testnet with proper RPC endpoints.
 
 **Acceptance Criteria:**
 
-- [ ] UI passes basic accessibility checks (labels, focus states)
-- [ ] Components work on mobile widths
-- [ ] Modern, responsive design with Tailwind CSS
-- [ ] Dark mode support
-- [ ] Proper semantic HTML
-- [ ] Consistent color scheme and typography
+- [x] Wagmi config configured for Base Sepolia
+- [x] Hooks/components can get an ethers provider from the adapter
+- [x] Hooks/components can get an ethers signer from the adapter
+- [x] `walletClientToSigner` utility function works
+- [x] `publicClientToProvider` utility function works
+- [x] RPC endpoints properly configured
 
 **Implementation Notes:**
 
-- Modern, responsive UI implemented across all pages
-- Tailwind CSS used throughout
-- Dark mode support via Tailwind dark: classes
-- Use red color scheme with black, grey, and white accents (VaultsIQ brand colors)
+- Base Sepolia RPC: `https://sepolia.base.org` ✅
+- Chain ID: 84532 ✅
+- Utilities handle viem to ethers conversions correctly ✅
+- Created `hooks/useEthersProvider.ts` for getting ethers provider ✅
+- Created `hooks/useEthersSigner.ts` for getting ethers signer ✅
+- RPC endpoint explicitly configured in wagmi config ✅
 
 ---
+
+---
+
+## ❌ Pending Issues
 
 ### Issue #4: Logo Design & Brand Identity
 
