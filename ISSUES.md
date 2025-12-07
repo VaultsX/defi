@@ -4,7 +4,47 @@ This file contains all GitHub issues for the VaultsIQ frontend. Each issue is re
 
 ## ✅ Completed Issues
 
+### Issue #5: UI Rebrand & Landing Page Redesign
 
+**Status:** ✅ COMPLETED  
+**Completed Date:** 2024
+
+**Labels:** `frontend`, `design`, `ui/ux`  
+
+**Priority:** HIGH
+
+**Description:**
+
+Complete UI rebrand with a modern, professional design. Create a new landing page with: header, hero section, features section, main content area, and footer. Implement a cohesive color scheme using shades of red with a mix of black, grey, and white for a sophisticated, modern look.
+
+**Acceptance Criteria:**
+
+- [x] Remove existing landing page content
+- [x] Design and implement new layout structure:
+  - [x] Header/Navbar (with logo, navigation, wallet connect)
+  - [x] Hero section (compelling introduction to VaultsIQ)
+  - [x] Features section (highlighting multi-vault capabilities)
+  - [x] Main content area (explaining ERC-4626, yield generation)
+  - [x] Footer (links, social, copyright)
+- [x] Implement color scheme:
+  - [x] Primary: Shades of red for primary actions and branding
+  - [x] Neutral: Black, grey, and white for backgrounds, text, and UI elements
+  - [x] Accent: Red variations for highlights and interactive elements
+- [x] Update Tailwind config with new color palette
+- [x] Ensure design is cohesive across all pages
+- [x] Maintain responsive design (mobile, tablet, desktop)
+- [x] Ensure accessibility (contrast ratios, focus states)
+
+**Technical Notes:**
+
+- Color palette configured in globals.css with CSS variables ✅
+- Hero section highlights "multiple vaults" capability ✅
+- Feature section emphasizes ERC-4626 compliance and automation ✅
+- Footer component created with links and resources ✅
+- Navigation links added to Navbar ✅
+- Enhanced landing page with comprehensive content ✅
+
+---
 
 ### Issue #1: Wallet Integration — Reown AppKit + Wagmi
 
