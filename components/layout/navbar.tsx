@@ -23,9 +23,13 @@ export function Navbar() {
     disconnect()
   }
 
-  const handleSwitchNetwork = () => {
+  const handleSwitchNetwork = async () => {
     if (switchChain) {
-      switchChain({ chainId: BASE_SEPOLIA_CHAIN_ID })
+      try {
+        await switchChain({ chainId: BASE_SEPOLIA_CHAIN_ID })
+      } catch (error) {
+        console.error('Failed to switch network:', error)
+      }
     }
   }
 
