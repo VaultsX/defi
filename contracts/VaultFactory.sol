@@ -53,6 +53,11 @@ contract VaultFactory is Ownable, ReentrancyGuard {
      * @notice Users must register before creating vaults
      */
     function registerUser(string memory username, string memory bio) external nonReentrant {
+        // Check if registration is paused
+        if (registrationPaused) {
+            revert InvalidUsername("Registration is currently paused");
+        }
+
         // Prevent zero address registration
         if (msg.sender == address(0)) {
             revert InvalidUsername("Cannot register zero address");
@@ -218,5 +223,53 @@ contract VaultFactory is Ownable, ReentrancyGuard {
         }
 
         return (isRegistered, usernames, bios, timestamps);
+    }
+
+    // Admin functions
+    bool public registrationPaused;
+
+    /**
+     * @dev Pause user registrations (admin only)
+     */
+    function pauseRegistration() external onlyOwner {
+        registrationPaused = true;
+    }
+
+    /**
+     * @dev Unpause user registrations (admin only)
+     */
+    function unpauseRegistration() external onlyOwner {
+        registrationPaused = false;
+    }
+
+    /**
+     * @dev Update user info (admin only)
+     * @param user Address of the user
+     * @param newUsername New username
+     * @param newBio New bio
+     */
+    function adminUpdateUserInfo(address user, string memory newUsername, string memory newBio) external onlyOwner {
+        if (!registeredUsers[user]) {
+            revert UserNotRegistered(user);
+        }
+        userUsernames[user] = newUsername;
+        userBios[user] = newBio;
+    }
+
+    /**
+     * @dev Remove user registration (admin only)
+     * @param user Address of the user to remove
+     */
+    function adminRemoveUser(address user) external onlyOwner {
+        if (!registeredUsers[user]) {
+            revert UserNotRegistered(user);
+        }
+        string memory username = userUsernames[user];
+        registeredUsers[user] = false;
+        delete userUsernames[user];
+        delete userBios[user];
+        delete userRegistrationTimestamps[user];
+        delete usernameToAddress[username];
+        _registeredUsersCount--;
     }
 
