@@ -107,9 +107,18 @@ contract UserVault is ERC20, IERC4626, Ownable, ReentrancyGuard, Pausable {
     /**
      * @dev Returns the total amount of assets managed by the vault
      * @return The total amount of assets (balance + deployed to protocols)
+     * @notice Includes both vault balance and assets deployed to DeFi protocols
      */
     function totalAssets() public view virtual override returns (uint256) {
         return _asset.balanceOf(address(this)) + _getTotalDeployedAssets();
+    }
+
+    /**
+     * @dev Get the vault's current asset balance (not deployed)
+     * @return The amount of assets held in the vault contract
+     */
+    function getVaultBalance() external view returns (uint256) {
+        return _asset.balanceOf(address(this));
     }
 
     /**
@@ -122,6 +131,14 @@ contract UserVault is ERC20, IERC4626, Ownable, ReentrancyGuard, Pausable {
             total += protocolDeployedAmounts[_supportedProtocols[i]];
         }
         return total;
+    }
+
+    /**
+     * @dev Get total deployed assets across all protocols
+     * @return Total amount of assets currently deployed
+     */
+    function getTotalDeployedAssets() external view returns (uint256) {
+        return _getTotalDeployedAssets();
     }
 
     /*//////////////////////////////////////////////////////////////
