@@ -420,8 +420,75 @@ contract UserVault is ERC20, IERC4626, Ownable, ReentrancyGuard, Pausable {
         return paused();
     }
 
+    /*//////////////////////////////////////////////////////////////
+                            AAVE INTEGRATION
+    //////////////////////////////////////////////////////////////*/
+
+    // Aave state
+    address private aaveLendingPool;
+    address private aaveAToken;
+    uint256 private aaveBalance;
+
+    /**
+     * @dev Deploy assets to Aave lending pool
+     * @param amount Amount of assets to deploy to Aave
+     * @notice Only owner can deploy assets
+     * @notice Requires Aave address to be configured via factory
+     */
+    function deployToAave(uint256 amount) external onlyOwner nonReentrant whenNotPaused {
+        if (amount == 0) revert InvalidAmount();
+        if (aaveLendingPool == address(0)) revert ProtocolNotConfigured();
+        if (amount > _asset.balanceOf(address(this))) revert InsufficientAssets();
+
+        // Update tracking
+        aaveBalance += amount;
+        protocolDeployedAmounts["Aave"] = aaveBalance;
+
+        // Transfer assets to Aave (placeholder - actual implementation requires Aave interface)
+        _asset.safeTransfer(aaveLendingPool, amount);
+
+        emit ProtocolDeployed("Aave", amount);
+    }
+
+    /**
+     * @dev Withdraw assets from Aave lending pool
+     * @param amount Amount of assets to withdraw from Aave
+     * @notice Only owner can withdraw assets
+     */
+    function withdrawFromAave(uint256 amount) external onlyOwner nonReentrant whenNotPaused {
+        if (amount == 0) revert InvalidAmount();
+        if (amount > aaveBalance) revert InsufficientAssets();
+
+        // Update tracking
+        aaveBalance -= amount;
+        protocolDeployedAmounts["Aave"] = aaveBalance;
+
+        // Withdraw from Aave (placeholder - actual implementation requires Aave interface)
+        // In real implementation, would call Aave's withdraw function
+
+        emit ProtocolWithdrawn("Aave", amount);
+    }
+
+    /**
+     * @dev Get current Aave balance
+     * @return The amount of assets currently deployed to Aave
+     */
+    function getAaveBalance() external view returns (uint256) {
+        return aaveBalance;
+    }
+
+    /**
+     * @dev Set Aave lending pool address (internal, called by factory)
+     * @param lendingPool Address of Aave lending pool
+     */
+    function _setAaveAddress(address lendingPool) internal {
+        aaveLendingPool = lendingPool;
+    }
+
     // Events
     event ProtocolAllocationChanged(string indexed protocol, uint256 oldAmount, uint256 newAmount);
+    event ProtocolDeployed(string indexed protocol, uint256 amount);
+    event ProtocolWithdrawn(string indexed protocol, uint256 amount);
     event VaultPaused(address indexed vault, address indexed pausedBy);
     event VaultUnpaused(address indexed vault, address indexed unpausedBy);
 }
