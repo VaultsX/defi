@@ -249,5 +249,47 @@ contract UserVault is ERC20, IERC4626, Ownable, ReentrancyGuard, Pausable {
 
         emit Withdraw(msg.sender, receiver, owner, assets, shares);
     }
+
+    /*//////////////////////////////////////////////////////////////
+                          DEPOSIT/WITHDRAW LOGIC
+    //////////////////////////////////////////////////////////////*/
+
+    /**
+     * @dev Preview the amount of shares that would be minted for a deposit
+     * @param assets The amount of assets to deposit
+     * @return shares The amount of shares that would be minted
+     */
+    function previewDeposit(uint256 assets) public view virtual override returns (uint256 shares) {
+        return convertToShares(assets);
+    }
+
+    /**
+     * @dev Preview the amount of assets required to mint shares
+     * @param shares The amount of shares to mint
+     * @return assets The amount of assets required
+     */
+    function previewMint(uint256 shares) public view virtual override returns (uint256 assets) {
+        uint256 supply = totalSupply();
+        return supply == 0 ? shares : (shares * totalAssets()) / supply;
+    }
+
+    /**
+     * @dev Preview the amount of shares that would be burned for a withdrawal
+     * @param assets The amount of assets to withdraw
+     * @return shares The amount of shares that would be burned
+     */
+    function previewWithdraw(uint256 assets) public view virtual override returns (uint256 shares) {
+        uint256 supply = totalSupply();
+        return supply == 0 ? assets : (assets * supply) / totalAssets();
+    }
+
+    /**
+     * @dev Preview the amount of assets that would be received for redeeming shares
+     * @param shares The amount of shares to redeem
+     * @return assets The amount of assets that would be received
+     */
+    function previewRedeem(uint256 shares) public view virtual override returns (uint256 assets) {
+        return convertToAssets(shares);
+    }
 }
 
