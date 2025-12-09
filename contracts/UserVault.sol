@@ -391,8 +391,11 @@ contract UserVault is ERC20, IERC4626, Ownable, ReentrancyGuard, Pausable {
      * @param protocol Name of the protocol (e.g., "Aave", "Compound")
      * @param amount Amount of assets to allocate to the protocol
      * @notice Only owner can set allocations
+     * @notice Allocation cannot exceed total assets in vault
      */
     function setProtocolAllocation(string memory protocol, uint256 amount) external onlyOwner {
+        bytes memory protocolBytes = bytes(protocol);
+        if (protocolBytes.length == 0) revert InvalidProtocol();
         if (amount > totalAssets()) revert AllocationExceedsAssets();
 
         uint256 oldAmount = protocolAllocations[protocol];
