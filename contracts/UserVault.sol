@@ -37,6 +37,13 @@ contract UserVault is ERC20, IERC4626, Ownable, ReentrancyGuard, Pausable {
     error InvalidProtocol();
     error AllocationExceedsAssets();
     error ProtocolNotConfigured();
+    error ZeroAddress();
+    error InvalidReceiver();
+    error InvalidOwner();
+    error ExceedsMaxDeposit();
+    error ExceedsMaxMint();
+    error ExceedsMaxWithdraw();
+    error ExceedsMaxRedeem();
 
     /**
      * @dev Constructor initializes the vault with asset and owner
@@ -144,6 +151,8 @@ contract UserVault is ERC20, IERC4626, Ownable, ReentrancyGuard, Pausable {
         returns (uint256 shares) 
     {
         if (assets == 0) revert InvalidAmount();
+        if (receiver == address(0)) revert InvalidReceiver();
+        if (assets > maxDeposit(receiver)) revert ExceedsMaxDeposit();
         
         shares = previewDeposit(assets);
         if (shares == 0) revert InvalidAmount();
@@ -175,6 +184,9 @@ contract UserVault is ERC20, IERC4626, Ownable, ReentrancyGuard, Pausable {
         returns (uint256 shares) 
     {
         if (assets == 0) revert InvalidAmount();
+        if (receiver == address(0)) revert InvalidReceiver();
+        if (owner == address(0)) revert InvalidOwner();
+        if (assets > maxWithdraw(owner)) revert ExceedsMaxWithdraw();
 
         shares = previewWithdraw(assets);
         if (shares == 0) revert InvalidAmount();
@@ -205,6 +217,8 @@ contract UserVault is ERC20, IERC4626, Ownable, ReentrancyGuard, Pausable {
         returns (uint256 assets) 
     {
         if (shares == 0) revert InvalidAmount();
+        if (receiver == address(0)) revert InvalidReceiver();
+        if (shares > maxMint(receiver)) revert ExceedsMaxMint();
 
         assets = previewMint(shares);
         if (assets == 0) revert InvalidAmount();
@@ -236,6 +250,9 @@ contract UserVault is ERC20, IERC4626, Ownable, ReentrancyGuard, Pausable {
         returns (uint256 assets) 
     {
         if (shares == 0) revert InvalidAmount();
+        if (receiver == address(0)) revert InvalidReceiver();
+        if (owner == address(0)) revert InvalidOwner();
+        if (shares > maxRedeem(owner)) revert ExceedsMaxRedeem();
 
         if (msg.sender != owner) {
             _spendAllowance(owner, msg.sender, shares);
