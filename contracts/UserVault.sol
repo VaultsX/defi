@@ -254,7 +254,7 @@ contract UserVault is ERC20, IERC4626, Ownable, ReentrancyGuard {
     {
         uint256 supply = totalSupply();
         uint256 total = totalAssets();
-        return supply == 0 ? assets : Math.mulDiv(assets, supply, total, Math.Rounding.Down);
+        return supply == 0 ? assets : Math.mulDiv(assets, supply, total, Math.Rounding.Floor);
     }
 
     /**
@@ -271,7 +271,7 @@ contract UserVault is ERC20, IERC4626, Ownable, ReentrancyGuard {
     {
         uint256 supply = totalSupply();
         uint256 total = totalAssets();
-        return supply == 0 ? shares : Math.mulDiv(shares, total, supply, Math.Rounding.Down);
+        return supply == 0 ? shares : Math.mulDiv(shares, total, supply, Math.Rounding.Floor);
     }
 
     /**
@@ -311,7 +311,7 @@ contract UserVault is ERC20, IERC4626, Ownable, ReentrancyGuard {
             return maxAssets;
         }
         // floor
-        return Math.mulDiv(maxAssets, supply, totalAssets(), Math.Rounding.Down);
+        return Math.mulDiv(maxAssets, supply, totalAssets(), Math.Rounding.Floor);
     }
 
     /**
@@ -369,7 +369,7 @@ contract UserVault is ERC20, IERC4626, Ownable, ReentrancyGuard {
     {
         uint256 supply = totalSupply();
         uint256 total = totalAssets();
-        return supply == 0 ? shares : Math.mulDiv(shares, total, supply, Math.Rounding.Up);
+        return supply == 0 ? shares : Math.mulDiv(shares, total, supply, Math.Rounding.Ceil);
     }
 
     /**
@@ -384,7 +384,7 @@ contract UserVault is ERC20, IERC4626, Ownable, ReentrancyGuard {
     {
         uint256 supply = totalSupply();
         uint256 total = totalAssets();
-        return supply == 0 ? assets : Math.mulDiv(assets, supply, total, Math.Rounding.Up);
+        return supply == 0 ? assets : Math.mulDiv(assets, supply, total, Math.Rounding.Ceil);
     }
 
     /**
