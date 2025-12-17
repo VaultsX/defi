@@ -21,7 +21,8 @@ export default function CreateVaultPage() {
   const router = useRouter();
 
   // Form state
-  const [selectedAsset, setSelectedAsset] = useState(SUPPORTED_ASSETS[0]);
+  // Explicitly type the state to allow any supported asset
+  const [selectedAsset, setSelectedAsset] = useState<typeof SUPPORTED_ASSETS[number]>(SUPPORTED_ASSETS[0]);
   const [vaultName, setVaultName] = useState("");
   const [vaultSymbol, setVaultSymbol] = useState("");
   const [initialDeposit, setInitialDeposit] = useState("");
@@ -37,7 +38,9 @@ export default function CreateVaultPage() {
     abi: ERC20_ABI,
     functionName: "balanceOf",
     args: [address || "0x0"],
-    enabled: !!address,
+    query: {
+      enabled: !!address,
+    },
   });
 
   // Check current allowance
@@ -46,7 +49,9 @@ export default function CreateVaultPage() {
     abi: ERC20_ABI,
     functionName: "allowance",
     args: [address || "0x0", VAULT_FACTORY_ADDRESS],
-    enabled: !!address,
+    query: {
+      enabled: !!address,
+    },
   });
 
   // Approve token spending
