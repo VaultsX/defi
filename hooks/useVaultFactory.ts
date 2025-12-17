@@ -22,7 +22,9 @@ export function useVaultFactory() {
     abi: VAULT_FACTORY_ABI,
     functionName: "getUserVaults",
     args: [address || "0x0"],
-    enabled: !!address,
+    query: {
+      enabled: !!address,
+    },
   });
 
   // 2. Fetch details for each vault
@@ -30,7 +32,7 @@ export function useVaultFactory() {
     if (!userVaults) return [];
 
     return (userVaults as string[]).map((vaultAddress) => ({
-      address: vaultAddress,
+      address: vaultAddress as `0x${string}`,
       abi: VAULT_ABI,
       functionName: "getVaultInfo" as const,
     }));
@@ -43,7 +45,9 @@ export function useVaultFactory() {
     refetch: refetchVaultData,
   } = useReadContracts({
     contracts: vaultCalls,
-    enabled: vaultCalls.length > 0,
+    query: {
+      enabled: vaultCalls.length > 0,
+    },
   });
 
   // 3. Transform the data into our Vault type

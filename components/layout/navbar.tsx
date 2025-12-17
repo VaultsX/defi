@@ -1,7 +1,7 @@
 'use client'
 
-import { useAccount, useDisconnect, useChainId, useSwitchChain } from 'wagmi'
-import { useAppKit } from '@reown/appkit/react'
+import { useAccount, useDisconnect, useChainId, useSwitchChain, useConnect } from 'wagmi'
+import { injected } from 'wagmi/connectors'
 import { NETWORK } from '@/config/constants'
 import { Logo } from '@/components/logo'
 
@@ -10,14 +10,14 @@ const BASE_SEPOLIA_CHAIN_ID = NETWORK.chainId
 export function Navbar() {
   const { address, isConnected } = useAccount()
   const { disconnect } = useDisconnect()
+  const { connect } = useConnect()
   const chainId = useChainId()
   const { switchChain } = useSwitchChain()
-  const { open } = useAppKit()
 
   const isCorrectNetwork = chainId === BASE_SEPOLIA_CHAIN_ID
 
   const handleConnect = () => {
-    open()
+    connect({ connector: injected() })
   }
 
   const handleDisconnect = () => {

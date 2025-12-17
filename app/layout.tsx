@@ -29,12 +29,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const initialState = cookieToInitialState(config, headers().get("cookie"));
+  const headersObj = await headers();
+  const initialState = cookieToInitialState(config, headersObj.get("cookie"));
   
   return (
     <html lang="en">

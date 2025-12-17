@@ -42,7 +42,9 @@ export default function DashboardPage() {
     address: VAULT_FACTORY_ADDRESS,
     functionName: "getUserVaults",
     args: [address || "0x0"],
-    enabled: !!address,
+    query: {
+      enabled: !!address,
+    },
   });
 
   useEffect(() => {
@@ -246,8 +248,8 @@ export default function DashboardPage() {
             </label>
             <Select
               value={filters.sortBy}
-              onValueChange={(value: SortOption) =>
-                setFilters({ ...filters, sortBy: value })
+              onValueChange={(value) =>
+                setFilters({ ...filters, sortBy: value as SortOption })
               }
             >
               <SelectTrigger>
