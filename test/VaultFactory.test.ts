@@ -228,6 +228,38 @@ describe("VaultFactory", function () {
       expect(username).to.equal("alice_updated");
       expect(bio).to.equal("Updated bio");
     });
+
+    it("Should not allow non-owner to update user info", async function () {
+      await vaultFactory.connect(user1).registerUser("alice", "Original");
+      await expect(
+        vaultFactory.connect(user1).adminUpdateUserInfo(user1.address, "new", "bio")
+      ).to.be.revertedWithCustomError(vaultFactory, "OwnableUnauthorizedAccount");
+    });
+
+    it("Should not allow non-owner to remove user", async function () {
+      await vaultFactory.connect(user1).registerUser("alice", "User");
+      await expect(
+        vaultFactory.connect(user1).adminRemoveUser(user1.address)
+      ).to.be.revertedWithCustomError(vaultFactory, "OwnableUnauthorizedAccount");
+    });
+  });
+
+  describe("Username Validation", function () {
+    it("Should reject username with only numbers", async function () {
+      await expect(
+        vaultFactory.connect(user1).registerUser("12345", "Valid bio")
+      ).to.be.revertedWithCustomError(vaultFactory, "InvalidUsername");
+    });
+
+    it("Should accept username with letters and numbers", async function () {
+      await vaultFactory.connect(user1).registerUser("alice123", "Valid bio");
+      expect(await vaultFactory.isUserRegistered(user1.address)).to.be.true;
+    });
+
+    it("Should accept username with underscores", async function () {
+      await vaultFactory.connect(user1).registerUser("alice_bob", "Valid bio");
+      expect(await vaultFactory.isUserRegistered(user1.address)).to.be.true;
+    });
   });
 });
 
