@@ -261,5 +261,44 @@ describe("VaultFactory", function () {
       expect(await vaultFactory.isUserRegistered(user1.address)).to.be.true;
     });
   });
+
+  describe("Gas Optimization Tests", function () {
+    it("Should efficiently handle batch lookups", async function () {
+      // Register multiple users
+      const users = [user1, user2];
+      for (let i = 0; i < users.length; i++) {
+        await vaultFactory.connect(users[i]).registerUser(`user${i}`, `Bio ${i}`);
+      }
+      
+      const addresses = users.map(u => u.address);
+      const [isRegistered] = await vaultFactory.batchGetUserInfo(addresses);
+      expect(isRegistered[0]).to.be.true;
+      expect(isRegistered[1]).to.be.true;
+    });
+  });
+
+  describe("Comprehensive Coverage", function () {
+    it("Should handle all view functions", async function () {
+      await vaultFactory.connect(user1).registerUser("testuser", "Test bio");
+      
+      // Test all view functions
+      expect(await vaultFactory.isUserRegistered(user1.address)).to.be.true;
+      const [username, bio, timestamp] = await vaultFactory.getUserInfo(user1.address);
+      expect(username).to.equal("testuser");
+      expect(bio).to.equal("Test bio");
+      expect(timestamp).to.be.gt(0);
+      
+      expect(await vaultFactory.getUserUsername(user1.address)).to.equal("testuser");
+      expect(await vaultFactory.getUserBio(user1.address)).to.equal("Test bio");
+      expect(await vaultFactory.getRegistrationTimestamp(user1.address)).to.equal(timestamp);
+      
+      const [isReg, u, b, t] = await vaultFactory.getAllUserInfo(user1.address);
+      expect(isReg).to.be.true;
+      expect(u).to.equal("testuser");
+      
+      expect(await vaultFactory.isUsernameAvailable("testuser")).to.be.false;
+      expect(await vaultFactory.isUsernameAvailable("available")).to.be.true;
+    });
+  });
 });
 
